@@ -3,6 +3,12 @@ const captainModel = require('../models/captain.model');
 
 module.exports.getAddressCoordinate = async (address) => {
     const apiKey = process.env.GOOGLE_MAPS_API;
+    
+    // Mock for local development without API key
+    if (!apiKey || apiKey.includes('your_')) {
+        return { ltd: 40.7128 + Math.random() * 0.01, lng: -74.0060 + Math.random() * 0.01 };
+    }
+
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     try {
@@ -28,6 +34,14 @@ module.exports.getDistanceTime = async (origin, destination) => {
     }
 
     const apiKey = process.env.GOOGLE_MAPS_API;
+
+    // Mock for local development without API key
+    if (!apiKey || apiKey.includes('your_')) {
+        return {
+            distance: { text: "15 km", value: 15000 },
+            duration: { text: "25 mins", value: 1500 }
+        };
+    }
 
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
 
@@ -58,6 +72,16 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
     }
 
     const apiKey = process.env.GOOGLE_MAPS_API;
+
+    // Mock for local development without API key
+    if (!apiKey || apiKey.includes('your_')) {
+        return [
+            `${input} Street, New York, NY`,
+            `${input} Avenue, New York, NY`,
+            `${input} Plaza, New York, NY`
+        ];
+    }
+
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${encodeURIComponent(input)}&key=${apiKey}`;
 
     try {

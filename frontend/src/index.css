@@ -11,12 +11,32 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body {
+    @apply bg-[#070B14] text-white overflow-x-hidden;
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset !important;
     -webkit-text-fill-color: white !important;
     caret-color: white;
+  }
+  
+  /* Custom Scrollbar for better dark UI */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
   }
 }
 
@@ -27,5 +47,50 @@
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+
+  /* RiderFlow Custom Design Utilities */
+  .bg-theme-gradient {
+    background: linear-gradient(135deg, #070B14 0%, #0d1120 50%, #120810 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #ff2d78, #ff9a56);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ff2d78, #ff6b35);
+    box-shadow: 0 8px 32px rgba(255, 45, 120, 0.3);
+    @apply text-white font-semibold transition-all active:scale-[0.98];
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    box-shadow: none;
+    pointer-events: none;
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+  }
+
+  .input-dark {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    @apply text-white placeholder-gray-500 outline-none transition-all;
+  }
+  .input-dark:focus {
+    border-color: rgba(255, 45, 120, 0.5);
+    background: rgba(255, 255, 255, 0.08);
   }
 }
